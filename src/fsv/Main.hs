@@ -16,7 +16,7 @@ data Fornsvenska = Fornsvenska
  deriving Show
 
 instance Language Fornsvenska where
-    morphology_header _ = "FM-FSV 1.0\n © L. Borin, M. Forsberg, 2010, under GNU LGPL 3.0 or CC-SA 2.5 Generic"
+    morphology_header _ = "FM-FSV 3.1.0\n © L. Borin, M. Forsberg, 2010, under GNU LGPL 3.0 or CC-SA 2.5 Generic"
     name         _ = "fsv"
     lprinter     _ = print_table
     internDict   _ = dict

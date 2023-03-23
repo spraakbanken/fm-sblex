@@ -20,7 +20,7 @@ data DALIN = DALIN
  deriving Show
 
 instance Language DALIN where
- morphology_header _ = "FM-DALIN 1.0\n  L. Borin & M. Forsberg, under GNU LGPL 3.0 or CC-SA 2.5 Generic"
+ morphology_header _ = "FM-DALIN 3.1.0\n  L. Borin & M. Forsberg, under GNU LGPL 3.0 or CC-SA 2.5 Generic"
  name         _ = "swe"
  paradigms    _ = foldr insertCommand emptyC commands
  composition  _ = Nothing --Just $ compDesc
@@ -30,7 +30,7 @@ instance Language DALIN where
  encoding _ = sw_encodings
  lprinter     _ = print_table
  word_attr    _ = [h_attr,w_attr,wp_attr]
- 
+
 compDesc :: CompDesc
 compDesc = [
  [ attr [h_attr, w_attr, wp_attr] ],
@@ -38,7 +38,7 @@ compDesc = [
  ]
 
 saldo_sandhi :: (String,String) -> [(String,String)]
-saldo_sandhi (x,y@(c:_)) = 
+saldo_sandhi (x,y@(c:_)) =
     case reverse x of
       (c1:c2:_) | c1 == c2 && c2 == c -> []
       (c1:_)    | is_consonant c1 && c1 == c -> [(x ++ [c],y),(x,y)]

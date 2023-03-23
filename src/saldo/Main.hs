@@ -23,7 +23,7 @@ data SAL = SAL
  deriving Show
 
 instance Language SAL where
- morphology_header _ = "FM-SALDO 2.0\n  L. Borin, M. Forsberg & A. Ranta, 2010, under GNU LGPL 3.0 or CC-SA 2.5 Generic"
+ morphology_header _ = "FM-SALDO 3.1.0\n  L. Borin, M. Forsberg & A. Ranta, 2010, under GNU LGPL 3.0 or CC-SA 2.5 Generic"
  name         _ = "swe"
 -- internDict   _ = swedishDict
  paradigms    _ = foldr insertCommand emptyC commands
@@ -51,7 +51,7 @@ compDesc = [
  ]
 
 saldo_sandhi :: (String,String) -> [(String,String)]
-saldo_sandhi (x,y@(c:_)) = 
+saldo_sandhi (x,y@(c:_)) =
     case reverse x of
       (c1:c2:_) | c1 == c2 && c2 == c -> []
       (c1:_)    | is_consonant c1 && c1 == c -> [(x ++ [c],y),(x,y)]
