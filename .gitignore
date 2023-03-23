@@ -27,3 +27,6 @@ cabal.project.local~
 config.log
 config.mk
 config.status
+
+# bin folder
+/bin/
