@@ -7,6 +7,7 @@ module Dict.ErrM where
 -- the Error monad: like Maybe type with error msgs
 
 import qualified Control.Monad as CM (MonadPlus(..), liftM,ap)
+import qualified Control.Monad.Fail as Fail
 import Control.Applicative (Applicative(..),Alternative(..))
 
 data Err a = Ok a | Bad String
@@ -14,9 +15,11 @@ data Err a = Ok a | Bad String
 
 instance Monad Err where
   return      = Ok
-  fail        = Bad
   Ok a  >>= f = f a
   Bad s >>= f = Bad s
+
+instance Fail.MonadFail Err where
+  fail        = Bad
 
 instance Applicative Err where
         pure = return
