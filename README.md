@@ -5,6 +5,8 @@ Introduction
 
 FM-SBLEX consists of three computational morphology tools for modern Swedish ([SALDO](http://spraakbanken.gu.se/saldo)), for 19th century Swedish ([Dalin](http://spraakbanken.gu.se/forskning/swefn/dalin)), and for Old Swedish. FM-SBLEX has been developed using the [Functional Morphology library](http://www.cse.chalmers.se/alumni/markus/FM/) **dead link**.
 
+Migrated to git from [svn](https://svn.spraakbanken.gu.se/repos/sblex/pub/fm/sblex).
+
 All tools in FM-SBLEX provide:
 
 *   an inflection engine
@@ -25,7 +27,6 @@ Retrieve the source code via anonymous subversion.
 
 You compile the software with the following commands. The compilation requires [The Glasgow Haskell Compiler](http://www.haskell.org/ghc/).
 
-    $ cd sblex
     $ ./configure
     $ make
     $ sudo make install
