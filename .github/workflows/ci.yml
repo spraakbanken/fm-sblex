@@ -6,8 +6,9 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        ghc-version: ['7.10','8.6.5', '8.8.4','9.6.1']
+        ghc-version: ['8.6.5', '8.8.4','9.6.1']
         cabal-version: ['2.4.1.0', 'latest']
         os: [ubuntu-latest, macOS-latest, windows-latest]
         exclude:
@@ -16,6 +17,11 @@ jobs:
             cabal-version: 2.4.1.0
           - ghc-version: 9.6.1
             cabal-version: 2.4.1.0
+        include:
+          - os: ubuntu-20.04
+            ghc-version: '7.10'
+            cabal-version: 2.4.1.0
+
     name: Build package for ${{ matrix.ghc-version }} on ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
