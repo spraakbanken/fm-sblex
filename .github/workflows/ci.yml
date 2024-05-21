@@ -23,7 +23,9 @@ jobs:
       matrix:
         ghc-version: ['8.6.5', '8.8.4','9.4.8','9.6.1']
         cabal-version: ['2.4.1.0', 'latest']
-        os: [ubuntu-latest, macOS-latest]
+        os: 
+          - ubuntu-latest
+          - macOS-latest
         exclude:
           # GHC 8.8+ only works with cabal v3+
           - ghc-version: '8.8.4'
@@ -32,6 +34,10 @@ jobs:
             cabal-version: '2.4.1.0'
           - ghc-version: '9.4.8'
             cabal-version: '2.4.1.0'
+          - ghc-version: '8.6.5'
+            os: macOS-latest
+          - ghc-version: '8.8.4'
+            os: macOS-latest
         include:
           - os: ubuntu-20.04
             ghc-version: '7.10'
