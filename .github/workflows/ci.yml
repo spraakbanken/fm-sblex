@@ -1,0 +1,57 @@
+
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  merge_group:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        ghc-version: ['8.6.5', '8.8.4','9.4.8','9.6.1']
+        cabal-version: ['2.4.1.0', 'latest']
+        os: 
+          - ubuntu-latest
+          - macOS-latest
+        exclude:
+          # GHC 8.8+ only works with cabal v3+
+          - ghc-version: '8.8.4'
+            cabal-version: '2.4.1.0'
+          - ghc-version: '9.6.1'
+            cabal-version: '2.4.1.0'
+          - ghc-version: '9.4.8'
+            cabal-version: '2.4.1.0'
+          - ghc-version: '8.6.5'
+            os: macOS-latest
+          - ghc-version: '8.8.4'
+            os: macOS-latest
+        include:
+          - os: ubuntu-20.04
+            ghc-version: '7.10'
+            cabal-version: 2.4.1.0
+
+    name: ${{ matrix.os }} / ${{ matrix.ghc-version }} / build package 
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Haskell
+        uses: haskell-actions/setup@v2
+        with:
+          ghc-version: ${{ matrix.ghc-version }}
+          cabal-version: ${{ matrix.cabal-version }}
+      - name: Build code
+        run: |
+          ./configure
+          make
