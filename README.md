@@ -88,3 +88,7 @@ Example of an output. The sign '+' expresses alternative.
    politiska       politisk..av.1:AQP0PN0S
    aktörer aktör..nn.1:NCUPN@IS
 ```
+
+## Development
+
+* `cd src/lib;  bnfc -m --haskell -o Dict -p Dict Dict.cf`
