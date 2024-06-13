@@ -3,14 +3,14 @@ include config.mk
 .PHONY: all install clean
 
 all: force
-	cd src; make -f ../config.mk -f Makefile;cd ..
+	cd src; make -f ../config.mk -f Makefile
 saldo: force
-	cd src; make -f ../config.mk -f Makefile saldo;cd ..
+	cd src; make -f ../config.mk -f Makefile saldo
 dalin: force
-	cd src; make -f ../config.mk -f Makefile dalin;cd ..
+	cd src; make -f ../config.mk -f Makefile dalin
 fsv: force
-	cd src; make -f ../config.mk -f Makefile fsv;cd ..
-force: ;
+	cd src; make -f ../config.mk -f Makefile fsv
+force:
 install:
 	$(INSTALL) -d $(bindir)
 	$(INSTALL) bin/$(SALDO)$(EXEEXT) $(bindir)
